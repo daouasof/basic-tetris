@@ -30,9 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     [0, 1, width, width + 1],
   ];
   const iTetromino = [
-    [1, 1, 1, 1],
-    [width, width, width, width],
-    [1, 1, 1, 1],
-    [width, width, width, width],
+    [1, width + 1, 2 * width + 1, 3 * width + 1],
+    [width, width + 1, width + 2, width + 3],
+    [1, width + 1, 2 * width + 1, 3 * width + 1],
+    [width, width + 1, width + 2, width + 3],
   ];
 });
