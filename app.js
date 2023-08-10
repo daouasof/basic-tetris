@@ -23,4 +23,10 @@ document.addEventListener('DOMContentLoaded', () => {
     [width, width + 1, width + 2, 2 * width + 1],
     [1, width + 1, 2 * width + 1, width],
   ];
+  const oTetromino = [
+    [0, 1, width, width + 1],
+    [0, 1, width, width + 1],
+    [0, 1, width, width + 1],
+    [0, 1, width, width + 1],
+  ];
 });
