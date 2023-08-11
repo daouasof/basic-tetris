@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const width = 10;
   const scoreDisplay = document.querySelector('#score');
   const startBtn = document.querySelector('#start-button');
+  let timerID;
 
   const lTetromino = [
     [1, width + 1, 2 * width + 1, 2],
@@ -49,7 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let nextRandom = Math.floor(Math.random() * theTetrominoes.length);
   let random = nextRandom;
-  nextRandom = Math.floor(Math.random() * theTetrominoes.length);
   let current = theTetrominoes[random][currentRotation];
 
   function draw() {
@@ -65,7 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   //Make the Tetrominos move down every second
-  timerID = setInterval(moveDown, 1000);
 
   function control(e) {
     if (e.keyCode === 37) {
@@ -186,4 +185,17 @@ document.addEventListener('DOMContentLoaded', () => {
       displaySquares[index].classList.add('tetromino'),
     );
   }
+
+  //start and pause
+  startBtn.addEventListener('click', () => {
+    if (timerID) {
+      clearInterval(timerID);
+      timerID = null;
+    } else {
+      draw();
+      timerID = setInterval(moveDown, 1000);
+      nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+      displayShape();
+    }
+  });
 });
