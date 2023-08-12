@@ -155,7 +155,6 @@ document.addEventListener('DOMContentLoaded', () => {
     undraw();
     currentRotation =
       currentRotation === current.length - 1 ? 0 : currentRotation + 1;
-    console.log(currentRotation);
     current = theTetrominoes[random][currentRotation];
     if (
       current.some((index) =>
@@ -203,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
       timerID = null;
     } else {
       draw();
-      timerID = setInterval(moveDown, 1000);
+      timerID = setInterval(moveDown, 500);
       nextRandom = Math.floor(Math.random() * theTetrominoes.length);
       displayShape();
     }
@@ -227,8 +226,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (row.every((index) => squares[index].classList.contains('taken'))) {
         score += 10;
         scoreDisplay.innerHTML = score;
-        row.forEach((index) => squares[index].classList.remove('taken'));
+        row.forEach((index) => {
+          squares[index].classList.remove('taken');
+          squares[index].classList.remove('tetromino');
+        });
         const squaresRemoved = squares.splice(i, width);
+        squares = squaresRemoved.concat(squares);
+        squares.forEach((cell) => grid.appendChild(cell));
       }
     }
   }
