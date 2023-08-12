@@ -162,7 +162,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (
       current.some((index) =>
         squares[currentPosition + index].classList.contains('taken'),
-      )
+      ) ||
+      (current.some((index) => (currentPosition + index) % width === 0) &&
+        current.some(
+          (index) => (currentPosition + index) % width === width - 1,
+        ))
     ) {
       currentRotation =
         currentRotation === 0 ? current.length - 1 : currentRotation - 1;
