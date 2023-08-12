@@ -4,6 +4,7 @@ body {
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   font-size: 1.6rem;
+  color: #581679;
   background: radial-gradient(
     circle,
     rgb(185, 174, 196) 0%,
@@ -60,4 +61,16 @@ body {
   flex-direction: column;
   align-items: center;
   padding: 0 20px;
+}
+
+button {
+  background-color: white;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  box-shadow: 0px 0px 10px #581679;
+}
+
+h1 {
+  text-shadow: 2px 2px 2px white;
 }
