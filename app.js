@@ -210,7 +210,9 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
       draw();
       timerID = setInterval(moveDown, 500);
-      nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+      if (!nextRandom) {
+        nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+      }
       displayShape();
     }
   });
