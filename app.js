@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let timerID;
   let score = 0;
   let nextRandom = 0;
-  const colors = ['orange', 'red', 'purple', 'green', 'blue'];
+  const colors = ['##734E95', '#FF6663', '#EFCB68', '#00CECB', '#CFBCDF'];
 
   const lTetromino = [
     [1, width + 1, 2 * width + 1, 2],
