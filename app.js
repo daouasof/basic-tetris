@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let timerID;
   let score = 0;
   let nextRandom = 0;
+  let timeInterval = 500;
   const colors = ['##734E95', '#FF6663', '#EFCB68', '#00CECB', '#CFBCDF'];
 
   const lTetromino = [
@@ -80,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (e.keyCode === 38) {
       rotate();
     } else if (e.keyCode === 40) {
-      // moveDown()
+      moveDown();
     }
   }
   document.addEventListener('keyup', control);
@@ -112,6 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
       displayShape();
       addScore();
       gameOver();
+      console.log(timeInterval);
     }
   }
 
@@ -151,6 +153,11 @@ document.addEventListener('DOMContentLoaded', () => {
       currentPosition -= 1;
     }
     draw();
+  }
+
+  // movee down tetromino
+  function moveFast() {
+    freeze();
   }
 
   // rotate the teromino
@@ -213,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
       timerID = null;
     } else {
       draw();
-      timerID = setInterval(moveDown, 500);
+      timerID = setInterval(moveDown, timeInterval);
       if (!nextRandom) {
         nextRandom = Math.floor(Math.random() * theTetrominoes.length);
       }
@@ -238,6 +245,11 @@ document.addEventListener('DOMContentLoaded', () => {
       ];
       if (row.every((index) => squares[index].classList.contains('taken'))) {
         score += 10;
+        if (score % 50 === 0 && timeInterval > 100) {
+          timeInterval -= 50;
+          clearInterval(timerID);
+          timerID = setInterval(moveDown, timeInterval);
+        }
         scoreDisplay.innerHTML = score;
         row.forEach((index) => {
           squares[index].classList.remove('taken');
