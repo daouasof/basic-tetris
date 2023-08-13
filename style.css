@@ -71,6 +71,11 @@ button {
   box-shadow: 0px 0px 10px #581679;
 }
 
-h1 {
+h1,
+.game-over {
   text-shadow: 2px 2px 2px white;
+}
+
+.hidden {
+  display: none;
 }

@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
         squares[currentPosition + index].classList.contains('taken'),
       )
     ) {
-      scoreDisplay.innerHTML = 'end';
+      document.querySelector('.game-over').classList.remove('hidden');
       clearInterval(timerID);
     }
   }
