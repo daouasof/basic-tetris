@@ -197,16 +197,11 @@ document.addEventListener('DOMContentLoaded', () => {
   //displaying the next Tetromino in mini-grod
   const displayWidth = 4;
   const upNextTetrominoes = [
-    [1, displayWidth + 1, 2 * displayWidth + 1, 2],
-    [
-      2 * displayWidth,
-      2 * displayWidth + 1,
-      displayWidth + 1,
-      displayWidth + 2,
-    ],
-    [displayWidth, displayWidth + 1, 1, displayWidth + 2],
-    [0, 1, displayWidth, displayWidth + 1],
-    [1, displayWidth + 1, 2 * displayWidth + 1, 3 * displayWidth + 1],
+    lTetromino(displayWidth)[0],
+    zTetromino(displayWidth)[0],
+    tTetromino(displayWidth)[0],
+    oTetromino(displayWidth)[0],
+    iTetromino(displayWidth)[0],
   ];
 
   const displaySquares = Array.from(
