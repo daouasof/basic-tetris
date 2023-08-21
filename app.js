@@ -10,51 +10,63 @@ document.addEventListener('DOMContentLoaded', () => {
   let timeInterval = 500;
   const colors = ['##734E95', '#FF6663', '#EFCB68', '#00CECB', '#CFBCDF'];
 
-  const lTetromino = [
-    [1, width + 1, 2 * width + 1, 2],
-    [width, width + 1, width + 2, 2 * width + 2],
-    [1, width + 1, 2 * width + 1, 2 * width],
-    [width, 2 * width, 2 * width + 1, 2 * width + 2],
-  ];
-  const zTetromino = [
-    [2 * width, 2 * width + 1, width + 1, width + 2],
-    [0, width, width + 1, 2 * width + 1],
-    [2 * width, 2 * width + 1, width + 1, width + 2],
-    [0, width, width + 1, 2 * width + 1],
-  ];
-  const tTetromino = [
-    [width, width + 1, 1, width + 2],
-    [1, width + 1, 2 * width + 1, width + 2],
-    [width, width + 1, width + 2, 2 * width + 1],
-    [1, width + 1, 2 * width + 1, width],
-  ];
-  const oTetromino = [
-    [0, 1, width, width + 1],
-    [0, 1, width, width + 1],
-    [0, 1, width, width + 1],
-    [0, 1, width, width + 1],
-  ];
-  const iTetromino = [
-    [1, width + 1, 2 * width + 1, 3 * width + 1],
-    [width, width + 1, width + 2, width + 3],
-    [1, width + 1, 2 * width + 1, 3 * width + 1],
-    [width, width + 1, width + 2, width + 3],
-  ];
+  function lTetromino(width) {
+    return [
+      [1, width + 1, 2 * width + 1, 2],
+      [width, width + 1, width + 2, 2 * width + 2],
+      [1, width + 1, 2 * width + 1, 2 * width],
+      [width, 2 * width, 2 * width + 1, 2 * width + 2],
+    ];
+  }
+  function zTetromino(width) {
+    return [
+      [2 * width, 2 * width + 1, width + 1, width + 2],
+      [0, width, width + 1, 2 * width + 1],
+      [2 * width, 2 * width + 1, width + 1, width + 2],
+      [0, width, width + 1, 2 * width + 1],
+    ];
+  }
+  function tTetromino(width) {
+    return [
+      [width, width + 1, 1, width + 2],
+      [1, width + 1, 2 * width + 1, width + 2],
+      [width, width + 1, width + 2, 2 * width + 1],
+      [1, width + 1, 2 * width + 1, width],
+    ];
+  }
+  function oTetromino(width) {
+    return [
+      [0, 1, width, width + 1],
+      [0, 1, width, width + 1],
+      [0, 1, width, width + 1],
+      [0, 1, width, width + 1],
+    ];
+  }
+  function iTetromino(width) {
+    return [
+      [1, width + 1, 2 * width + 1, 3 * width + 1],
+      [width, width + 1, width + 2, width + 3],
+      [1, width + 1, 2 * width + 1, 3 * width + 1],
+      [width, width + 1, width + 2, width + 3],
+    ];
+  }
 
-  const theTetrominoes = [
-    lTetromino,
-    zTetromino,
-    tTetromino,
-    oTetromino,
-    iTetromino,
-  ];
+  function theTetrominoes(width) {
+    return [
+      lTetromino(width),
+      zTetromino(width),
+      tTetromino(width),
+      oTetromino(width),
+      iTetromino(width),
+    ];
+  }
 
   let currentPosition = 4;
   let currentRotation = 0;
 
   //Randomly select a Tetromino
-  let random = Math.floor(Math.random() * theTetrominoes.length);
-  let current = theTetrominoes[random][currentRotation];
+  let random = Math.floor(Math.random() * theTetrominoes(width).length);
+  let current = theTetrominoes(width)[random][currentRotation];
 
   //draw the Tetromino
   function draw() {
@@ -106,8 +118,8 @@ document.addEventListener('DOMContentLoaded', () => {
       );
       // Start a new Tetromino Falling
       random = nextRandom;
-      nextRandom = Math.floor(Math.random() * theTetrominoes.length);
-      current = theTetrominoes[random][currentRotation];
+      nextRandom = Math.floor(Math.random() * theTetrominoes(width).length);
+      current = theTetrominoes(width)[random][currentRotation];
       currentPosition = 4;
       draw();
       displayShape();
@@ -165,7 +177,7 @@ document.addEventListener('DOMContentLoaded', () => {
     undraw();
     currentRotation =
       currentRotation === current.length - 1 ? 0 : currentRotation + 1;
-    current = theTetrominoes[random][currentRotation];
+    current = theTetrominoes(width)[random][currentRotation];
     if (
       current.some((index) =>
         squares[currentPosition + index].classList.contains('taken'),
@@ -177,7 +189,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ) {
       currentRotation =
         currentRotation === 0 ? current.length - 1 : currentRotation - 1;
-      current = theTetrominoes[random][currentRotation];
+      current = theTetrominoes(width)[random][currentRotation];
     }
     draw();
   }
@@ -222,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
       draw();
       timerID = setInterval(moveDown, timeInterval);
       if (!nextRandom) {
-        nextRandom = Math.floor(Math.random() * theTetrominoes.length);
+        nextRandom = Math.floor(Math.random() * theTetrominoes(width).length);
       }
       displayShape();
     }
